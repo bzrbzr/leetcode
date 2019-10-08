@@ -32,7 +32,7 @@ struct ListNode *creatnext(int n)
 	}
 	return head;
 }
-
+#if 0
 struct ListNode* reverseList(struct ListNode* head){
 	struct ListNode *current = head;
 	struct ListNode *pre = NULL;
@@ -46,7 +46,21 @@ struct ListNode* reverseList(struct ListNode* head){
 	}
 	return pre;
 }
+#else
 
+struct ListNode* reverseList(struct ListNode* head){
+	if (head == NULL || head->next == NULL)
+	{
+		return head;
+	}
+	struct ListNode *p = reverseList(head->next);
+	head->next->next = head;
+	head->next = NULL;
+
+	return p;
+}
+
+#endif
 void printnode(struct ListNode *head)
 {
 	struct ListNode *p = head;
